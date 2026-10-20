@@ -1,0 +1,45 @@
+{
+  "name": "Notification Sender",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest",
+      "profile": "default"
+    },
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:2.1.0": {
+      "version": "lts"
+    },
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "containerEnv": {
+    "DISABLE_AUTOUPDATER": "1"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "tamasfe.even-better-toml",
+        "golang.go",
+        "ms-vsliveshare.vsliveshare"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[rust]": {
+          "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        },
+        "[go]": {
+          "editor.defaultFormatter": "golang.go"
+        },
+        "rust-analyzer.linkedProjects": ["rust/Cargo.toml"],
+        "gopls": {
+          "build.directoryFilters": ["-rust"]
+        }
+      }
+    }
+  },
+  "postCreateCommand": "rustup component add clippy rustfmt && cd rust && cargo fetch && cd ../go && go mod download"
+}

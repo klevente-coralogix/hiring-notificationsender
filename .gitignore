@@ -1,0 +1,9 @@
+# Rust
+/rust/target
+/target
+
+# Claude Code
+.claude/settings.local.json
+
+# IntelliJ
+.idea/
